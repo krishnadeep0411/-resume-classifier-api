@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+import os
 
 class DenseNetwork(nn.Module):
     def __init__(self):
@@ -51,14 +52,19 @@ label_y = {
 }
 
 
+
 def load_model_and_vectorizer():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    model_path = os.path.join(base_dir, "model", "classifier.pth")
+    vectorizer_path = os.path.join(base_dir, "model", "vectorizer.pkl")
+
     model = DenseNetwork()
-    model.load_state_dict(torch.load("model/classifier.pth", map_location=device))
+    model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
     model.to(device)
 
-    vectorizer = joblib.load("model/vectorizer.pkl")
+    vectorizer = joblib.load(vectorizer_path)
 
     return model, vectorizer, label_y, device
