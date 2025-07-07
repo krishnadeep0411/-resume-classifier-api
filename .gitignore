@@ -1,4 +1,10 @@
-.idea
 __pycache__/
-.venv/ 
-*.pyc 
+*.pyc
+*.pyo
+*.pyd
+.venv/
+.env
+.env.*
+.DS_Store
+.idea/
+*.sqlite3
