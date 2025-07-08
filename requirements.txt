@@ -6,3 +6,5 @@ numpy
 pandas
 pymupdf
 joblib
+python-multipart
+scikit-learn==1.6.1
