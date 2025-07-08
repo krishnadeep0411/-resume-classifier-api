@@ -12,4 +12,3 @@ async def predict(file: UploadFile = File(...)):
 
     category = predict_resume_category(file)
     return {"predicted_category": category}
-
